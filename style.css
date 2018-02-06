@@ -4,3 +4,7 @@
 p {
     font-size: 14pt;
 }
+button {
+    padding: 0 40px;
+    margin-right: 20px;
+}
