@@ -3,25 +3,37 @@ function println(text) {
     document.write(text + ln);
 }
 
-var outcome = document.createElement("p");
-var outcomeText = document.createTextNode("Result");
-outcome.appendChild(outcomeText);
-document.body.appendChild(outcome);
+function setOutcome(option) {
+    var result = document.getElementById("players_choice");
+    result.innerHTML = option;
+    play(option);
+}
 
-function setOutcome(result) {
-    outcomeText.nodeValue = result;
+function play(option) {
+    var result = document.getElementById("computers_choice");
+    
+    switch(option) {
+        case 'Rock':
+            result.innerHTML = 'Paper';
+            break;
+        case 'Paper':
+            result.innerHTML = 'Scissors';
+            break;
+        case 'Scissors':
+            result.innerHTML = 'Rock';
+            break;
+        default:
+            result.innerHTML = option + ': How did you even get here?';
+    }
 }
 
 var options = ["Rock", "Paper", "Scissors"];
-var buttons = [];
+var buttons = [document.getElementById("rock"),
+                document.getElementById("paper"),
+                document.getElementById('scissors')];
 
-for (var i = 0; i < options.length; i++) {
-    buttons[i] = document.createElement("button");
-    var textNode = document.createTextNode(options[i]);
-    buttons[i].appendChild(textNode);
-    document.body.appendChild(buttons[i]);
-    buttons[i].addEventListener("click", 
-        setOutcome.bind(null, options[i]));
-}
+buttons[0].addEventListener('click', setOutcome.bind(null, options[0]));
+buttons[1].addEventListener('click', setOutcome.bind(null, options[1]));
+buttons[2].addEventListener('click', setOutcome.bind(null, options[2]));
 
 println("");
