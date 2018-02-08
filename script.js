@@ -11,6 +11,33 @@ function setOutcome(players_choice) {
     play(players_choice);
 }
 
+const outcome = {
+    WIN : 'win',
+    LOSE : 'lose',
+    DRAW : 'draw'
+};
+
+function react(outcome) {
+    var pic = document.getElementById('pic');
+    var intro = document.getElementById("intro");
+    switch(outcome) {
+        case 'lose':
+            intro.innerHTML = 'I win! Let\'s play again!';
+            pic.src = './resources/win.jpg';
+            break;
+        case 'win':
+            intro.innerHTML = 'I lost... Let\'s play again!';
+            pic.src = './resources/lose.jpg';
+            break;
+        case 'draw':
+            intro.innerHTML = 'It\'s a draw... Let\'s play again!';
+            pic.src = './resources/draw.jpg';
+            break;
+        default:
+            pic.src = './resources/lets_play.jpg';
+    }
+}
+
 function play(players_choice) {
     var result = document.getElementById("computers_choice");
     var random = Math.floor(Math.random() * 3);
@@ -20,27 +47,26 @@ function play(players_choice) {
 }
 
 function calculateResults(players_choice, computers_choice) {
-    var intro = document.getElementById("intro");
     if (players_choice === computers_choice) {
-        intro.innerHTML = 'It\'s a draw... Let\'s play again!';
+        react(outcome.DRAW);
     } else {
         if (players_choice === "Rock") {
             if (computers_choice === "Paper") {
-                intro.innerHTML = 'I win! Let\'s play again!';
+                react(outcome.LOSE);
             } else {
-                intro.innerHTML = 'I lost... Let me beat you!';
+                react(outcome.WIN);
             }
         } else if (players_choice === "Paper") {
             if (computers_choice === "Scissors") {
-                intro.innerHTML = 'I win! Let\'s play again!';
+                react(outcome.LOSE);
             } else {
-                intro.innerHTML = 'I lost... Let me beat you!';
+                react(outcome.WIN);
             }
         } else if (players_choice === "Scissors") {
             if (computers_choice === "Rock") {
-                intro.innerHTML = 'I win! Let\'s play again!';
+                react(outcome.LOSE);
             } else {
-                intro.innerHTML = 'I lost... Let me beat you!';
+                react(outcome.WIN);
             }
         }
     }
