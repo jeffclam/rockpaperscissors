@@ -3,6 +3,8 @@ function println(text) {
     document.write(text + ln);
 }
 
+var options = ["Rock", "Paper", "Scissors"];
+
 function setOutcome(option) {
     var result = document.getElementById("players_choice");
     result.innerHTML = option;
@@ -11,8 +13,9 @@ function setOutcome(option) {
 
 function play(option) {
     var result = document.getElementById("computers_choice");
-    
-    switch(option) {
+    var random = Math.floor(Math.random() * 3);
+    var choice = options[random];
+    switch(choice) {
         case 'Rock':
             result.innerHTML = 'Paper';
             break;
@@ -23,11 +26,10 @@ function play(option) {
             result.innerHTML = 'Rock';
             break;
         default:
-            result.innerHTML = option + ': How did you even get here?';
+            result.innerHTML = choice + ': How did you even get here?';
     }
 }
 
-var options = ["Rock", "Paper", "Scissors"];
 var buttons = [document.getElementById("rock"),
                 document.getElementById("paper"),
                 document.getElementById('scissors')];
