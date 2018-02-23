@@ -79,3 +79,25 @@ var buttons = [document.getElementById("rock"),
 buttons[0].addEventListener('click', setOutcome.bind(null, options[0]));
 buttons[1].addEventListener('click', setOutcome.bind(null, options[1]));
 buttons[2].addEventListener('click', setOutcome.bind(null, options[2]));
+
+let mouse_coords = document.getElementById("coords");
+function showPosition(event) {
+    let x = event.clientX;
+    let y = event.clientY;
+    mouse_coords.firstChild.nodeValue = x + ", " + y;
+}
+
+document.addEventListener('mousemove', showPosition, false);
+
+function pressKey(event) {
+    let lastKey = event.keyCode;
+    if (lastKey === "R".charCodeAt(0)) {
+        setOutcome("Rock");
+    } else if (lastKey === "P".charCodeAt(0)) {
+        setOutcome("Paper");
+    } else if (lastKey === "S".charCodeAt(0)) {
+        setOutcome("Scissors");
+    }
+}
+
+document.addEventListener('keydown', pressKey, false);
